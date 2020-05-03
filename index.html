@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Postando Aqui</title>
+    <link href="css/style.css" rel="stylesheet" type="text/css" />
+    <link href="bootstrap-4.3.1-dist/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="bootstrap-4.3.1-dist/js/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="bootstrap-4.3.1-dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/cadastro.js"></script>
+    <link rel="shortcut icon" href="img/iconePostandoAqui.ico" >
+</head>
+<body>  
+    <div class="container">
+
+        <form action="action/cadastro_candidato.php" method="post" enctype="multipart/form-data">
+
+          <div class="row" id="title">
+              <div class="col-sm-4 col-xs-12" id="logo"></div>
+              <div class="col-sm-4 col-xs-12">
+                  <div class="descricao">
+                      <h2>Cadastro de Candidatos</h2>
+                  </div>
+              </div>
+              <div class="col-sm-4 col-xs-12"></div>
+          </div>
+
+          <div class="row">
+            <!--Subtitulo das informações do candidato-->
+              <div class="col-12" id="subTitulo">
+                  <h4>Informações Pessoais</h4>    
+              </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-11 control-label" id="aviso">
+              <p class="help-block" ><h11>*</h11> Campo Obrigatório </p>
+            </div>          
+          </div>
+          
+          <div class="row">
+            <!--Nome completo do candidato-->
+            <div class="col-md-6 col-xs-4">
+              <div class="form-group">
+                <label for="nome">Nome: <h11>*</h11> </label>
+                <input id="nome" type="text" class="form-control" name="nome" placeholder="Nome Completo" maxlength="70" required>
+              </div>
+            </div>    
+            <!--Número do CPF do candidato-->
+            <div class="col-md-3 col-xs-2">
+              <div class="form-group">
+                <label for="cpf">CPF: <h11>*</h11></label>
+                <input id="cpf" type="text" class="form-control" name="cpf" placeholder="Somente números" required  maxlength="14" OnKeyPress="formatar('000.000.000-000', this)" onBlur="showhide()">
+              </div>
+            </div> 
+            <!--Estado civil do candidato-->     
+            <div class="col-md-3 col-xs-2">
+              <div class="form-group">
+                <label for="estadoCivil">Estado Civil:</label>
+                <select class="form-control" data-size="5" data-live-search="true" data-width="100%" name="estadoCivil">
+                      <option selected disabled>Escolha uma opção</option>
+                      <option>Solteiro</option>
+                      <option>Casado</option>
+                      <option>Divorciado</option>
+                      <option>Viuvo</option>
+                      <option>Outro</option>
+                  </select>
+              </div>
+            </div>  
+          </div>
+
+          <div class="row">
+            <!--Sexo do candidato-->
+            <label class="col-md-2 control-label" for="radios">Sexo: <h11>*</h11></label>
+            <div class="col-md-2"> 
+              <label required="" class="radio-inline" for="radios-0" >
+                <input name="sexo" id="sexo" value="feminino" type="radio" required>
+                Feminino
+              </label> 
+              <label class="radio-inline" for="radios-1">
+                <input name="sexo" id="sexo" value="masculino" type="radio">
+                Masculino
+              </label>
+            </div>
+            <!--Número do RG do candidato-->
+            <div class="col-md-5 col-xs-2">
+              <div class="form-group">
+                <label for="rg">RG: <h11>*</h11></label>
+                <input id="rg" type="text" class="form-control" name="rg" placeholder="Número do RG" maxlength="20" required>
+              </div>
+            </div> 
+            <!--Sigla do estado da cidade de emissão do RG-->
+            <div class="col-md-1 col-xs-1">
+              <div class="form-group">
+                <label for="ufRG">UF: <h11>*</h11> </label>
+                <select class="form-control" id="uf" data-size="5" data-live-search="true" data-width="100%" name="ufRG" required>
+                      <option selected disabled>UF</option>
+                      <option>AC</option>
+                      <option>AL</option>
+                      <option>AP</option>
+                      <option>AM</option>
+                      <option>BA</option>
+                      <option>CE</option>
+                      <option>DF</option>
+                      <option>ES</option>
+                      <option>GO</option>
+                      <option>MA</option>
+                      <option>MT</option>
+                      <option>MS</option>
+                      <option>MG</option>
+                      <option>PA</option>
+                      <option>PB</option>
+                      <option>PE</option>
+                      <option>PR</option>
+                      <option>PB</option>
+                      <option>PI</option>
+                      <option>RJ</option>
+                      <option>RN</option>
+                      <option>RS</option>
+                      <option>RO</option>
+                      <option>RR</option>
+                      <option>SC</option>
+                      <option>SP</option>
+                      <option>SE</option>
+                      <option>TO</option>
+                  </select>
+              </div>
+            </div>  
+            <!--Data da emissão do RG do candidato-->
+            <div class="col-md-2 col-xs-2">
+              <div class="form-group">
+                <label for="dataEmissaoRG">Emissão: <h11>*</h11> </label>
+                <input id="data" name="dataEmissaoRG" placeholder="DD/MM/AAAA" class="form-control input-md" required="" type="text" maxlength="10" OnKeyPress="formatar('##/##/####', this)" onBlur="showhide()">
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <!--Data de nascimento do candidato-->
+            <div class="col-md-2 col-xs-2">
+              <div class="form-group">
+                <label for="dataNascimento">Nascimento: <h11>*</h11> </label>
+                <input id="dtnasc" name="dataNascimento" placeholder="DD/MM/AAAA" class="form-control input-md" required="" type="text" maxlength="10" OnKeyPress="formatar('##/##/####', this)" onBlur="showhide()">
+              </div>
+            </div> 
+            <!--Nome da cidade de naturalidade do candidato-->   
+            <div class="col-md-9 col-xs-4">
+              <div class="form-group">
+                <label for="naturalidade">Naturalidade: <h11>*</h11> </label>
+                <input id="naturalidade" type="text" class="form-control" name="naturalidade" placeholder="Natural de" maxlength="70" required>
+              </div>
+            </div>   
+            <!--Sigla do estado da cidade de naturarilidade do cancidato-->   
+            <div class="col-md-1 col-xs-1">
+              <div class="form-group">
+                <label for="ufNascimento">UF: <h11>*</h11> </label>
+                <select class="form-control" id="uf" data-size="5" data-live-search="true" data-width="100%" name="ufNascimento" required>
+                      <option selected disabled>UF</option>
+                      <option>AC</option>
+                      <option>AL</option>
+                      <option>AP</option>
+                      <option>AM</option>
+                      <option>BA</option>
+                      <option>CE</option>
+                      <option>DF</option>
+                      <option>ES</option>
+                      <option>GO</option>
+                      <option>MA</option>
+                      <option>MT</option>
+                      <option>MS</option>
+                      <option>MG</option>
+                      <option>PA</option>
+                      <option>PB</option>
+                      <option>PE</option>
+                      <option>PR</option>
+                      <option>PB</option>
+                      <option>PI</option>
+                      <option>RJ</option>
+                      <option>RN</option>
+                      <option>RS</option>
+                      <option>RO</option>
+                      <option>RR</option>
+                      <option>SC</option>
+                      <option>SP</option>
+                      <option>SE</option>
+                      <option>TO</option>
+                  </select>
+                </div>
+              </div>    
+          </div>
+
+          <div class="row">
+            <!--Nome do pai do candidato-->
+            <div class="col-md-6 col-xs-6">
+              <div class="form-group">
+                <label for="nomePai">Nome do Pai: <h11>*</h11> </label>
+                <input id="nomePai" type="text" class="form-control" name="nomePai" placeholder="Nome completo" maxlength="70" required>
+              </div>
+            </div>      
+            <!--Nome da mãe do candidato-->
+            <div class="col-md-6 col-xs-6">
+              <div class="form-group">
+                <label for="nomeMae">Nome da Mãe: <h11>*</h11> </label>
+                <input id="nomeMae" type="text" class="form-control" name="nomeMae" placeholder="Nome completo" maxlength="70" required>
+              </div>
+            </div>      
+          </div>
+
+          <div class="row">
+            <!--Subtitulo dos Dados da CNH-->
+            <div class="col-12" id="subTitulo">
+              <h4>Informações da CNH</h4>    
+            </div>
+          </div>
+
+          <div class="row">
+            <!--Código da CNH-->
+            <div class="col-md-4 col-xs-2">
+              <div class="form-group">
+                <label for="codigoCNH">Código da CNH: <h11>*</h11> </label>
+                <input id="codigoCNH" type="text" class="form-control" name="codigoCNH" placeholder="Números laterais" required maxlength="11" OnKeyPress="formatar('00000000000', this)" onBlur="showhide()">
+              </div>
+            </div>    
+            <!--Número do registro da CNH-->      
+            <div class="col-md-5 col-xs-2">
+              <div class="form-group">
+                <label for="registroCNH">Registro da CNH: <h11>*</h11> </label>
+                <input id="registroCNH" type="text" class="form-control" name="registroCNH" placeholder="Em vermelho sob a foto" required  maxlength="11" OnKeyPress="formatar('0000000000000', this)" onBlur="showhide()">
+              </div>
+            </div> 
+            <!--Sigla do estado da cidade da CNH-->
+            <div class="col-md-1 col-xs-1">
+              <div class="form-group">
+                <label for="ufCNH">UF: <h11>*</h11> </label>
+                <select class="form-control" id="uf" data-size="5" data-live-search="true" data-width="100%" name="ufCNH" required>
+                    <option selected disabled>UF</option>
+                    <option>AC</option>
+                    <option>AL</option>
+                    <option>AP</option>
+                    <option>AM</option>
+                    <option>BA</option>
+                    <option>CE</option>
+                    <option>DF</option>
+                    <option>ES</option>
+                    <option>GO</option>
+                    <option>MA</option>
+                    <option>MT</option>
+                    <option>MS</option>
+                    <option>MG</option>
+                    <option>PA</option>
+                    <option>PB</option>
+                    <option>PE</option>
+                    <option>PR</option>
+                    <option>PB</option>
+                    <option>PI</option>
+                    <option>RJ</option>
+                    <option>RN</option>
+                    <option>RS</option>
+                    <option>RO</option>
+                    <option>RR</option>
+                    <option>SC</option>
+                    <option>SP</option>
+                    <option>SE</option>
+                    <option>TO</option>
+                </select>
+              </div>
+            </div> 
+            <!--Data da emissão da CNH-->
+            <div class="col-md-2 col-xs-2">
+              <div class="form-group">
+                <label for="dataEmissaoCNH">Emissão da CNH: <h11>*</h11> </label>
+                <input id="data" name="dataEmissaoCNH" placeholder="DD/MM/AAAA" class="form-control input-md" required="" type="text" maxlength="10" OnKeyPress="formatar('##/##/####', this)" onBlur="showhide()">
+              </div>
+            </div>      
+          </div>
+
+          <div class="row">
+            <!--Data da primeira emissão da CNH-->
+            <div class="col-md-2 col-xs-2">
+              <div class="form-group">
+                <label for="primeiraEmissaoCNH">1ª Emissão da CNH: <h11>*</h11> </label>
+                <input id="data" name="primeiraEmissaoCNH" placeholder="DD/MM/AAAA" class="form-control input-md" required="" type="text" maxlength="10" OnKeyPress="formatar('##/##/####', this)" onBlur="showhide()">
+              </div>
+            </div>    
+            <!--Categoria da CNH-->  
+            <div class="col-md-2 col-xs-2">
+              <div class="form-group">
+                <label for="categoria">Categoria: <h11>*</h11> </label>
+                <input id="categoria" type="text" class="form-control" name="categoria" placeholder="Categoria" required maxlength="3">
+              </div>
+            </div>  
+            <!--Data de validade na CNH-->                
+            <div class="col-md-2 col-xs-2">
+              <div class="form-group">
+                <label for="validadeCNH">Validade da CNH: <h11>*</h11> </label>
+                <input id="data" name="validadeCNH" placeholder="DD/MM/AAAA" class="form-control input-md" required="" type="text" maxlength="10" OnKeyPress="formatar('##/##/####', this)" onBlur="showhide()">
+              </div>
+            </div>  
+            <!--Código de segiurança da CNH-->
+            <div class="col-md-6 col-xs-2">
+              <div class="form-group">
+                <label for="segurancaCNH">Código de Segurança da CNH: <h11>*</h11> </label>
+                <input id="segurancaCNH" type="text" class="form-control" name="segurancaCNH" placeholder="Abaixo da data de emissão" required maxlength="11" OnKeyPress="formatar('0000000000000000', this)" onBlur="showhide()">
+              </div>
+            </div>           
+          </div>
+
+          <div class="row">
+            <!--Subtitulo do endereço e telefones do candidato-->
+            <div class="col-12" id="subTitulo">
+              <h4>Informações do Endereço  e Contato</h4>    
+            </div>              
+          </div>
+
+          <div class="row">
+            <!--Endereço do endereço do candidato-->
+            <div class="col-md-6 col-xs-4">
+              <div class="form-group">
+                <label for="enderecoPessoal">Endereço: <h11>*</h11> </label>
+                <input id="endereco" type="text" class="form-control" name="enderecoPessoal" placeholder="Endereço" required maxlength="85" >
+              </div>
+            </div>
+            <!--Número do endereço do candidato-->
+            <div class="col-md-2 col-xs-2">
+              <div class="form-group">
+                <label for="numeroEnderecoPessoal">Número: </label>
+                <input id="numeroEndereco" type="text" class="form-control" name="numeroEnderecoPessoal" placeholder="Número" maxlength="11">
+              </div>
+            </div>
+            <!--Complemento do endereço do candidato-->
+            <div class="col-md-4 col-xs-4">
+              <div class="form-group">
+                <label for="complementoEnderecoPessoal">Complemento: </label>
+                <input id="complementoEndereco" type="text" class="form-control" name="complementoEnderecoPessoal" placeholder="Complemento" maxlength="50">
+              </div>
+            </div>
+          </div>  
+
+          <div class="row">
+            <!--Bairro do endereço do candidato-->
+            <div class="col-md-4 col-xs-3">
+              <div class="form-group">
+                <label for="bairroEnderecoPessoal">Bairro: <h11>*</h11> </label>
+                <input id="bairroEndereco" type="text" class="form-control" name="bairroEnderecoPessoal" placeholder="Bairro" required maxlength="70">
+              </div>
+            </div>      
+            <!--Cidade do endereço do candidato-->
+            <div class="col-md-5 col-xs-4">
+              <div class="form-group">
+                <label for="cidadeEnderecoPessoal">Cidade: <h11>*</h11> </label>
+                <input id="cidadeEndereco" type="text" class="form-control" name="cidadeEnderecoPessoal" placeholder="Bairro" required maxlength="70">
+              </div>
+            </div> 
+            <!--Sigla do estado da cidade do endereço do candidato-->
+            <div class="col-md-1 col-xs-1">
+              <div class="form-group">
+                <label for="ufEnderecoPessoal">UF: <h11>*</h11> </label>
+                <select class="form-control" id="uf" data-size="5" data-live-search="true" data-width="100%" name="ufEnderecoPessoal" required>
+                    <option selected disabled>UF</option>
+                    <option>AC</option>
+                    <option>AL</option>
+                    <option>AP</option>
+                    <option>AM</option>
+                    <option>BA</option>
+                    <option>CE</option>
+                    <option>DF</option>
+                    <option>ES</option>
+                    <option>GO</option>
+                    <option>MA</option>
+                    <option>MT</option>
+                    <option>MS</option>
+                    <option>MG</option>
+                    <option>PA</option>
+                    <option>PB</option>
+                    <option>PE</option>
+                    <option>PR</option>
+                    <option>PB</option>
+                    <option>PI</option>
+                    <option>RJ</option>
+                    <option>RN</option>
+                    <option>RS</option>
+                    <option>RO</option>
+                    <option>RR</option>
+                    <option>SC</option>
+                    <option>SP</option>
+                    <option>SE</option>
+                    <option>TO</option>
+                </select>
+              </div>
+            </div>
+            <!--CEP do endereço do candidato-->
+            <div class="col-md-2 col-xs-2">
+              <div class="form-group">
+                <label for="cepEnderecoPessoal">CEP: <h11>*</h11> </label>
+                <input id="cepEndereco" type="text" class="form-control" name="cepEnderecoPessoal" placeholder="00000-000" required maxlength="9" OnKeyPress="formatar('00000-000', this)" onBlur="showhide()">
+              </div>
+            </div>   
+            <!--Número do telefone residencial do candidato-->
+            <div class="col-md-3 col-xs-3">
+              <div class="form_group">
+                <label for="telefoneResidencial">Telefone Residencial: </label>
+                <input type="text" name="telefoneResidencial" id="telefone"  class="form-control" maxlength="30" placeholder="XX XXXXX-XXXX" OnKeyPress="formatar('## #####-####', this)">
+              </div>
+            </div>          
+            <!--Número do telefone pessoal do candidato-->     
+            <div class="col-md-3 col-xs-3">
+              <div class="form_group">
+                <label for="telefonePessoal">Telefone Pessoal: </label>
+                <input type="text" name="telefonePessoal" id="telefone"  class="form-control" maxlength="30" placeholder="XX XXXXX-XXXX" OnKeyPress="formatar('## #####-####', this)">
+              </div>
+            </div>         
+            <!--Número do telefone celular do candidato-->    
+            <div class="col-md-3 col-xs-3">
+              <div class="form_group">
+                <label for="telefoneCelular">Telefone Celular: </label>
+                <input type="text" name="telefoneCelular" id="telefone"  class="form-control" maxlength="30" placeholder="XX XXXXX-XXXX" OnKeyPress="formatar('## #####-####', this)">
+              </div>
+            </div>         
+            <!--Número do telefone comercial do candidato-->    
+            <div class="col-md-3 col-xs-3">
+              <div class="form_group">
+                <label for="telefoneComercial">Telefone Comercial: </label>
+                <input type="text" name="telefoneComercial" id="telefone"  class="form-control" maxlength="30" placeholder="XX XXXXX-XXXX" OnKeyPress="formatar('## #####-####', this)">
+              </div>
+            </div>         
+          </div>
+
+          <div class="row">
+            <!--Email do candidato-->
+            <div class="col-md-12 col-xs-12">
+              <div class="form-group">
+                <label for="email">E-Mail: <h11>*</h11> </label>
+                <input id="email" type="text" class="form-control" name="email" placeholder="email@email.com" required="" maxlength="256" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+              </div>
+            </div>          
+          </div>    
+
+          <div class="row">
+            <!--Subtitulo do veículo-->
+            <div class="col-12" id="subTitulo">
+              <h4>Informações do Veículo</h4>    
+            </div>              
+          </div>  
+
+          <div class="row">
+            <!--Placa do veículo-->
+            <div class="col-md-2 col-xs-2">
+              <label for="placaVeiculo">Placa: <h11>*</h11></label>
+              <input id="placaVeiculo" type="text" class="form-control" name="placaVeiculo" placeholder="XXX0?00" required maxlength="7">
+            </div>
+            <!--Cidade da placa do veículo-->
+            <div class="col-md-7 col-xs-6">
+              <label for="cidadeVeiculo">Cidade: <h11>*</h11></label>
+              <input id="cidade" type="text" class="form-control" name="cidadeVeiculo" placeholder="Cidade da placa" required maxlength="70">
+            </div>
+            <!--Sigla do estado da cidade da placa do veículo-->
+            <div class="col-md-1 col-xs-1">
+              <div class="form-group">
+                <label for="ufVeiculo">UF: <h11>*</h11> </label>
+                <select class="form-control" id="uf" data-size="5" data-live-search="true" data-width="100%" name="ufVeiculo" required>
+                    <option selected disabled>UF</option>
+                    <option>AC</option>
+                    <option>AL</option>
+                    <option>AP</option>
+                    <option>AM</option>
+                    <option>BA</option>
+                    <option>CE</option>
+                    <option>DF</option>
+                    <option>ES</option>
+                    <option>GO</option>
+                    <option>MA</option>
+                    <option>MT</option>
+                    <option>MS</option>
+                    <option>MG</option>
+                    <option>PA</option>
+                    <option>PB</option>
+                    <option>PE</option>
+                    <option>PR</option>
+                    <option>PB</option>
+                    <option>PI</option>
+                    <option>RJ</option>
+                    <option>RN</option>
+                    <option>RS</option>
+                    <option>RO</option>
+                    <option>RR</option>
+                    <option>SC</option>
+                    <option>SP</option>
+                    <option>SE</option>
+                    <option>TO</option>
+                </select>
+              </div>
+            </div>
+            <!--Cor do veículo-->
+            <div class="col-md-2 col-xs-2">
+              <label for="corVeiculo">Cor: <h11>*</h11> </label>
+              <input id="corVeiculo" type="text" class="form-control" name="corVeiculo" placeholder="Cor" required maxlength="20"> 
+            </div>
+          </div>
+
+          <div class="row">
+            <!--Número do chassi do veículo-->
+            <div class="col-md-3 col-xs-3">
+              <label for="chassiVeiculo">Chassi: <h11>*</h11> </label>
+              <input id="chassiVeiculo" type="text" class="form-control" name="chassiVeiculo" placeholder="Chassi" required maxlength="17">   
+            </div>
+            <!--Ano de fabricação do veículo-->
+            <div class="col-md-3 col-xs-3">
+              <label for="anoVeiculo">Ano: <h11>*</h11> </label>
+              <input id="ano" type="number" class="form-control" name="anoVeiculo" required maxlength="4">  
+            </div>
+            <!--Número do RENAVAM do veículo-->
+            <div class="col-md-3 col-xs-3">
+              <label for="renavanVeiculo">RENAVAM: <h11>*</h11> </label>
+              <input id="renavan" type="number" class="form-control" name="renavanVeiculo" placeholder="Renavan" required maxlength="11">  
+            </div>
+            <!--Tipo de combustível do veículo-->
+            <div class="col-md-3 col-xs-3">
+              <div class="form-group">
+                <label for="combustivelVeiculo">Tipo de Combustível: </label>
+                <select class="form-control" id="combustivelVeiculo" data-size="5" data-live-search="true" data-width="100%" name="combustivelVeiculo">
+                    <option selected disabled>Selecione ...</option>
+                    <option>Etanol</option>
+                    <option>Gasolina</option>
+                    <option>Diesel</option>
+                    <option>Etanol/Gasolina</option>
+                    <option>GNV</option>
+                    <option>GNV/Etanol</option>
+                    <option>GNV/Gasolina</option>
+                    <option>GNV/Diesel</option>
+                    <option>GNV/Etanol/Gasolina</option>
+                    <option>Elétrico</option>
+                    <option>Hibrido</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <!--Marca do veículo-->
+            <div class="col-md-3 colxs-3">
+              <label for="marcaVeiculo">Marca: <h11>*</h11></label>
+              <input id="marcaVeiculo" type="text" class="form-control" name="marcaVeiculo" placeholder="Marca" required maxlength="30">
+            </div>
+            <!--Modelo do veículo-->
+            <div class="col-md-3 colxs-3">
+              <label for="modeloVeiculo">Modelo: <h11>*</h11></label>
+              <input id="modeloVeiculo" type="text" class="form-control" name="modeloVeiculo" placeholder="Modelo" required maxlength="30">
+            </div>
+            <!--Número do RNTRC do veículo-->
+            <div class="col-md-3 colxs-3">
+              <label for="rntrcVeiculo">RNTRC: </label>
+              <input id="rntrcVeiculo" type="text" class="form-control" name="rntrcVeiculo" placeholder="Número RNTRC" maxlength="20">
+            </div>
+            <!--Validade do RNTRC do veículo-->
+            <div class="col-md-3 col-xs-3">
+              <div class="form-group">
+                <label for="validadeRNTRC">Validade da RNTRC:</label>
+                <input id="data" name="validadeRNTRC" placeholder="DD/MM/AAAA" class="form-control input-md" type="text" maxlength="10" OnKeyPress="formatar('##/##/####', this)" onBlur="showhide()">
+              </div>
+            </div>           
+          </div>
+
+          <div class="row">
+            <div class="col-12" id="descritivo">
+              <h6>Informações do proprietário do veículo</h6>
+            </div>
+          </div>
+
+          <div class="row">
+            <!--Nome completo do proprietário do veículo-->
+            <div class="col-md-9 col-xs-4">
+              <div class="form-group">
+                <label for="nomeProprietario">Nome do proprietário do veículo: <h11>*</h11> </label>
+                <input id="nome" type="text" class="form-control" name="nomeProprietario" placeholder="Nome Completo" required maxlength="70"> 
+              </div>
+            </div>    
+            <!--Número do CPF do proprietário do veículo-->
+            <div class="col-md-3 col-xs-2">
+              <div class="form-group">
+                <label for="cpfCnpjProprietario">CPF/CNPJ: <h11>*</h11></label>
+                <input id="CPFcNPJ" type="text" class="form-control" name="cpfCnpjProprietario" placeholder="Somente números" required>
+              </div>
+            </div> 
+          </div>
+
+          <div class="row">
+            <!--Estado civil do proprietário do veículo-->     
+            <div class="col-md-3 col-xs-2">
+              <div class="form-group">
+                <label for="estadoCivilProprietario">Estado civil do proprietário:</label>
+                <select class="form-control" data-size="5" data-live-search="true" data-width="100%" name="estadoCivilProprietario">
+                      <option selected disabled>Escolha uma opção</option>
+                      <option>Solteiro</option>
+                      <option>Casado</option>
+                      <option>Divorciado</option>
+                      <option>Viuvo</option>
+                      <option>Outro</option>
+                  </select>
+              </div>
+            </div>    
+            <!--Número do RG do proprietario do veículo-->
+            <div class="col-md-4 col-xs-2">
+              <div class="form-group">
+                <label for="rgProprietario">RG do proprietário: <h11>*</h11></label>
+                <input id="rg" type="text" class="form-control" name="rgProprietario" placeholder="Número do RG" maxlength="20" required>
+              </div>
+            </div> 
+            <!--Sigla do estado da cidade de emissão do RG do proprietário do veículo-->
+            <div class="col-md-1 col-xs-1">
+              <div class="form-group">
+                <label for="ufRGProprietario">UF: <h11>*</h11> </label>
+                <select class="form-control" id="uf" data-size="5" data-live-search="true" data-width="100%" name="ufRGProprietario" required>
+                      <option selected disabled>UF</option>
+                      <option>AC</option>
+                      <option>AL</option>
+                      <option>AP</option>
+                      <option>AM</option>
+                      <option>BA</option>
+                      <option>CE</option>
+                      <option>DF</option>
+                      <option>ES</option>
+                      <option>GO</option>
+                      <option>MA</option>
+                      <option>MT</option>
+                      <option>MS</option>
+                      <option>MG</option>
+                      <option>PA</option>
+                      <option>PB</option>
+                      <option>PE</option>
+                      <option>PR</option>
+                      <option>PB</option>
+                      <option>PI</option>
+                      <option>RJ</option>
+                      <option>RN</option>
+                      <option>RS</option>
+                      <option>RO</option>
+                      <option>RR</option>
+                      <option>SC</option>
+                      <option>SP</option>
+                      <option>SE</option>
+                      <option>TO</option>
+                  </select>
+              </div>
+            </div>  
+            <!--Data da emissão do RG do proprietário do veículo-->
+            <div class="col-md-2 col-xs-2">
+              <div class="form-group">
+                <label for="dataEmissaoRGProprietario">Emissão: <h11>*</h11> </label>
+                <input id="data" name="dataEmissaoRGProprietario" placeholder="DD/MM/AAAA" class="form-control input-md" required="" type="text" maxlength="10" OnKeyPress="formatar('##/##/####', this)" onBlur="showhide()">
+              </div>
+            </div>
+            <!--Data de nascimento do proprietário do veículo-->
+            <div class="col-md-2 col-xs-2">
+              <div class="form-group">
+                <label for="dataNascimentoProprietario">Nascimento: <h11>*</h11> </label>
+                <input id="dtnasc" name="dataNascimentoProprietario" placeholder="DD/MM/AAAA" class="form-control input-md" required="" type="text" maxlength="10" OnKeyPress="formatar('##/##/####', this)" onBlur="showhide()">
+              </div>
+            </div>   
+          </div>
+
+          <div class="row">
+            <!--Nome do pai do proprietario do veículo-->
+            <div class="col-md-6 col-xs-6">
+              <div class="form-group">
+                <label for="nomePai">Nome do Pai: </label>
+                <input id="nomePai" type="text" class="form-control" name="nomePaiProprietario" placeholder="Nome completo" maxlength="70">
+              </div>
+            </div>      
+            <!--Nome da mãe do proprietário do veículo-->
+            <div class="col-md-6 col-xs-6">
+              <div class="form-group">
+                <label for="nomeMae">Nome da Mãe: </label>
+                <input id="nomeMae" type="text" class="form-control" name="nomeMaeProprietario" placeholder="Nome completo" maxlength="70">
+              </div>
+            </div>      
+          </div>
+
+          <div class="row">
+            <!--Endereço do endereço do proprietário do veículo-->
+            <div class="col-md-6 col-xs-4">
+              <div class="form-group">
+                <label for="enderecoProprietario">Endereço: </label>
+                <input id="endereco" type="text" class="form-control" name="enderecoProprietario" placeholder="Endereço" maxlength="85">
+              </div>
+            </div>
+            <!--Número do endereço do proprietário do veículo-->
+            <div class="col-md-2 col-xs-2">
+              <div class="form-group">
+                <label for="numeroEnderecoProprietario">Número: </label>
+                <input id="numeroEndereco" type="text" class="form-control" name="numeroEnderecoProprietario" placeholder="Número" maxlength="11">
+              </div>
+            </div>
+            <!--Complemento do endereço do proprietário do veículo-->
+            <div class="col-md-4 col-xs-4">
+              <div class="form-group">
+                <label for="complementoEnderecoProprietario">Complemento: </label>
+                <input id="complementoEndereco" type="text" class="form-control" name="complementoEnderecoProprietario" placeholder="Complemento" maxlength="50">
+              </div>
+            </div>
+          </div>  
+
+          <div class="row">
+            <!--Bairro do endereço do proprietário do veículo-->
+            <div class="col-md-4 col-xs-3">
+              <div class="form-group">
+                <label for="bairroEnderecoProprietario">Bairro: </label>
+                <input id="bairroEndereco" type="text" class="form-control" name="bairroEnderecoProprietario" placeholder="Bairro" maxlength="70">
+              </div>
+            </div>      
+            <!--Cidade do endereço do proprietário do veículo-->
+            <div class="col-md-5 col-xs-4">
+              <div class="form-group">
+                <label for="cidadeEnderecoProprietario">Cidade:</label>
+                <input id="cidadeEndereco" type="text" class="form-control" name="cidadeEnderecoProprietario" placeholder="Bairro" maxlength="70">
+              </div>
+            </div> 
+            <!--Sigla do estado da cidade do endereço do prorpietário do veículo-->
+            <div class="col-md-1 col-xs-1">
+              <div class="form-group">
+                <label for="ufEnderecoProprietario">UF: </label>
+                <select class="form-control" id="uf" data-size="5" data-live-search="true" data-width="100%" name="ufEnderecoProprietario" >
+                    <option selected disabled>UF</option>
+                    <option>AC</option>
+                    <option>AL</option>
+                    <option>AP</option>
+                    <option>AM</option>
+                    <option>BA</option>
+                    <option>CE</option>
+                    <option>DF</option>
+                    <option>ES</option>
+                    <option>GO</option>
+                    <option>MA</option>
+                    <option>MT</option>
+                    <option>MS</option>
+                    <option>MG</option>
+                    <option>PA</option>
+                    <option>PB</option>
+                    <option>PE</option>
+                    <option>PR</option>
+                    <option>PB</option>
+                    <option>PI</option>
+                    <option>RJ</option>
+                    <option>RN</option>
+                    <option>RS</option>
+                    <option>RO</option>
+                    <option>RR</option>
+                    <option>SC</option>
+                    <option>SP</option>
+                    <option>SE</option>
+                    <option>TO</option>
+                </select>
+              </div>
+            </div>
+            <!--CEP do endereço do proprietário do veículo-->
+            <div class="col-md-2 col-xs-2">
+              <div class="form-group">
+                <label for="cepEnderecoProprietario">CEP:  </label>
+                <input id="cepEndereco" type="text" class="form-control" name="cepEnderecoProprietario" placeholder="00000-000" maxlength="9" OnKeyPress="formatar('00000-000', this)" onBlur="showhide()">
+              </div>
+            </div>   
+            <!--Número do telefone residencial do proprietário do veículo-->
+            <div class="col-md-3 col-xs-3">
+              <div class="form_group">
+                <label for="telefoneResidencialProprietario">Telefone Residencial: </label>
+                <input type="text" name="telefoneResidencialProprietario" id="telefone"  class="form-control" placeholder="XX XXXXX-XXXX" OnKeyPress="formatar('## #####-####', this)" maxlength="30">
+              </div>
+            </div>          
+            <!--Número do telefone pessoal do proprietário do veículo-->     
+            <div class="col-md-3 col-xs-3">
+              <div class="form_group">
+                <label for="telefonePessoalProprietario">Telefone Pessoal: </label>
+                <input type="text" name="telefonePessoalProprietario" id="telefone"  class="form-control" placeholder="XX XXXXX-XXXX" OnKeyPress="formatar('## #####-####', this)" maxlength="30">
+              </div>
+            </div>         
+            <!--Número do telefone celular do proprietário do veículo-->    
+            <div class="col-md-3 col-xs-3">
+              <div class="form_group">
+                <label for="telefoneCelularProprietario">Telefone Celular: </label>
+                <input type="text" name="telefoneCelularProprietario" id="telefone"  class="form-control" placeholder="XX XXXXX-XXXX" OnKeyPress="formatar('## #####-####', this)" maxlength="30">
+              </div>
+            </div>         
+            <!--Número do telefone comercial do proprietário do veículo-->    
+            <div class="col-md-3 col-xs-3">
+              <div class="form_group">
+                <label for="telefoneComercialProprietario">Telefone Comercial: </label>
+                <input type="text" name="telefoneComercialProprietario" id="telefone"  class="form-control" placeholder="XX XXXXX-XXXX" OnKeyPress="formatar('## #####-####', this)" maxlength="30">
+              </div>
+            </div>         
+          </div>
+
+          <div class="row">
+            <!--Área de atuação do candidato-->
+            <div class="col-md-12 col-xs-12">
+              <div class="form-group">
+                <label for="areaAtuacao">Região(ões) que conhece: <h11>*</h11> </label>
+                <input id="areaAtuacao" type="text" class="form-control" name="areaAtuacao" placeholder="Descreva as regiões que conhece" required maxlength="2048">
+              </div>
+            </div>          
+          </div>
+
+          <div class="row">
+            <!--Botões-->
+            <div class="col-md-8" id="botoes">
+              <!--<button id="Cadastrar" name="Cadastrar" class="btn btn-success" type="Submit">Cadastrar</button>
+              <button id="Cancelar" name="Cancelar" class="btn btn-danger" type="Reset">Cancelar</button>-->
+              <a class="btn btn-success" href="#"><i class="glyphicon glyphiicon-ok"></i> Salvar</a>
+              <a class="btn btn-danger" href="#"><i class="glyphicon glyphiicon-ok"></i> Cancelar</a>
+          </div>
+      </div>
+    </form>
+</body>
+</html>

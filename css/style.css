@@ -1,0 +1,52 @@
+h11 {
+    color:red;
+}
+
+div {
+    min-height: fit-content;
+}
+
+#title {
+    background-color: white;
+}
+
+#logo {
+    background: url("../img/logo_postandoaqui217x94.png") 0 0 no-repeat;
+    margin-top: 10px;
+}
+
+#rodape {
+    background: url("../img/logo_postandoaqui217x94.png") 0 0 no-repeat;
+    min-height: 40px;
+    margin-top: 10px;
+}
+
+.descricao {
+    height: 10em;
+    display: flex;
+    align-items: center;
+    justify-content: center
+}
+
+#subTitulo {
+    background-color: #EC4A26;
+    color: white;
+    height: fit-content;
+    margin-top:  10px;
+    margin-bottom: 10px;
+}
+
+#descritivo {
+    margin-top:  10px;
+    margin-bottom: 10px;
+}
+
+#aviso{
+   text-align: right;
+    
+}
+
+#botoes{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
